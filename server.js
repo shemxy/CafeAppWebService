@@ -29,7 +29,7 @@ app.listen(port, () => {
 app.get('/menuitems', async (req, res) => {
     try{
         let connection = await mysql.createConnection(dbConfig);
-        const [rows] = await connection.execute('SELECT * FROM defaultdb.menu_items');
+        const [rows] = await connection.execute('SELECT * FROM menu_items');
         res.json(rows);
     } catch(err) {
         console.error(err);
