@@ -84,7 +84,7 @@ app.get('/deleteMenuItem/:id', async (req, res) => {
     try {
         let connection = await mysql.createConnection(dbConfig);
         const [rows] = await connection.execute(
-            'SELECT * FROM menu_items WHERE id = ?',
+            'DELETE FROM menu_items WHERE id = ?',
             [id]
         );
         await connection.end();
