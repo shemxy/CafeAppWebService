@@ -43,7 +43,7 @@ app.post('/addMenuItem', async (req, res) => {
     try {
         let connection = await mysql.createConnection(dbConfig);
         await connection.execute(
-            'INSERT INTO menu_items (name, price, description) VALUES (?, ?, ?)',
+            'INSERT INTO menu_items (name, price, category) VALUES (?, ?, ?)',
             [name, price, description]
         );
         await connection.end();
@@ -64,7 +64,7 @@ app.put('/updateMenuItem/:id', async (req, res) => {
     try {
         let connection = await mysql.createConnection(dbConfig);
         await connection.execute(
-            'UPDATE menu_items SET name = ?, price = ?, description = ? WHERE id = ?',
+            'UPDATE menu_items SET name = ?, price = ?, category = ? WHERE id = ?',
             [name, price, description, id]
         );
         await connection.end();
