@@ -38,13 +38,13 @@ app.get('/menuitems', async (req, res) => {
 });
 
 app.post('/addMenuItem', async (req, res) => {
-    const { name, price, description } = req.body;
+    const { name, price, category } = req.body;
 
     try {
         let connection = await mysql.createConnection(dbConfig);
         await connection.execute(
             'INSERT INTO menu_items (name, price, category) VALUES (?, ?, ?)',
-            [name, price, description]
+            [name, price, category]
         );
         await connection.end();
 
@@ -59,13 +59,13 @@ app.post('/addMenuItem', async (req, res) => {
 
 app.put('/updateMenuItem/:id', async (req, res) => {
     const { id } = req.params;
-    const { name, price, description } = req.body;
+    const { name, price, category } = req.body;
 
     try {
         let connection = await mysql.createConnection(dbConfig);
         await connection.execute(
             'UPDATE menu_items SET name = ?, price = ?, category = ? WHERE id = ?',
-            [name, price, description, id]
+            [name, price, category, id]
         );
         await connection.end();
 
